@@ -17,11 +17,11 @@ def _clean_guttenberg(text: str) -> str:
 def count_words(fname: TextIOWrapper, clean_text: bool = False) -> Dict[str, int]:
     """Count the words in a text file
 
-       fname:
-           File to count words in
+    fname:
+        File to count words in
 
-       clean_text:
-           Should we remove the guttenberg header and footer?
+    clean_text:
+        Should we remove the guttenberg header and footer?
     """
 
     text = fname.read()
@@ -35,13 +35,8 @@ def count_words(fname: TextIOWrapper, clean_text: bool = False) -> Dict[str, int
     word_counts = collections.Counter(word_list)
     return dict(word_counts)
 
-def word_counts_to_df(word_counts: Dict[str, int]) -> pd.DataFrame:
-    df = pd.DataFrame(
-        {"word": x, "freq": y}
-        for x, y in word_counts.items()
-    )
 
-    return (
-        df
-        .sort_values("freq", ascending=False)
-    )
+def word_counts_to_df(word_counts: Dict[str, int]) -> pd.DataFrame:
+    df = pd.DataFrame({"word": x, "freq": y} for x, y in word_counts.items())
+
+    return df.sort_values("freq", ascending=False)

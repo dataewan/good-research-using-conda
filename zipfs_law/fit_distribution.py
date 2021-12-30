@@ -21,7 +21,7 @@ class SummaryStatistics:
             "total_words": self.total_words,
             "distinct_words": self.distinct_words,
             "alpha": self.alpha,
-            "C": self.C
+            "C": self.C,
         }
 
 
