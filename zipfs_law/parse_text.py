@@ -2,6 +2,7 @@ from io import TextIOWrapper
 import string
 import collections
 from typing import Dict
+import pandas as pd
 
 
 def _clean_guttenberg(text: str) -> str:
@@ -33,3 +34,14 @@ def count_words(fname: TextIOWrapper, clean_text: bool = False) -> Dict[str, int
     word_list = [word.lower() for word in npunc if word]
     word_counts = collections.Counter(word_list)
     return dict(word_counts)
+
+def word_counts_to_df(word_counts: Dict[str, int]) -> pd.DataFrame:
+    df = pd.DataFrame(
+        {"word": x, "freq": y}
+        for x, y in word_counts.items()
+    )
+
+    return (
+        df
+        .sort_values("freq", ascending=False)
+    )
